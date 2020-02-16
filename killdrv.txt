@@ -1,0 +1,58 @@
+
+
+
+
+
+
+
+
+
+                            KillDrv
+                     Drive removal utility
+             Copyright (c) 1994-1997 Marcus Better
+
+                         Version 1.01
+                         May 3, 1997
+
+
+
+
+
+
+
+
+
+What is KillDrv?
+================
+
+KillDrv is a utility which removes a logical DOS drive.  It can be
+used to remove drives created by DumbDrv.  With other types of drives,
+KillDrv should be used with caution.  Some device drivers don't expect
+their drives to be turned off, and so they may get confused.
+
+
+License
+=======
+
+KillDrv is free software, and is distributed under the GNU General
+Public License.  Please see the file COPYING for details.
+
+
+Running KillDrv
+===============
+
+KillDrv is run by entering
+
+            KILLDRV d:
+
+at the command prompt, where d: is the drive that is to be removed.
+
+
+Contacting the author
+=====================
+
+You are welcome send me any ideas, comments and suggestions for
+KillDrv.  If you have found any bugs, please let me know.  My email
+address is:
+
+             Marcus.Better@abc.se

@@ -1,0 +1,83 @@
+
+
+
+
+
+
+
+
+
+                            DumbDrv
+                    Dummy DOS Device Driver
+             Copyright (C) 1994-1996 Marcus Better
+
+                         Version 1.10
+                        January 3, 1996
+
+
+
+
+
+
+
+
+
+What is DumbDrv?
+================
+
+DumbDrv is a device driver which creates a null block device - a
+device that does absolutely nothing, except for occupying one or more
+drive letters.  This can be useful if one wants to reserve a drive
+letter at boot time, so that another driver can use that drive letter.
+The KillDrv utility may be used to delete a DumbDrv device.
+
+Here's an example where DumbDrv is useful: Let's say we have a hard
+disk called C:, a CD-ROM drive (accessed by MSCDEX.EXE), and a ramdisk
+created by RAMDRIVE.SYS.  We now want the CD-ROM drive to be D: and
+the ramdisk E:.  Since RAMDRIVE.SYS is loaded before MSCDEX.EXE, the
+ramdisk will automatically become D:, though.  This is where DumbDrv
+comes in.  By loading DUMBDRV.SYS just before RAMDRIVE.SYS, we reserve
+the drive letter D:, forcing the ramdisk to become E:.  We can then
+delete the DumbDrv using the KillDrv utility, and load MSCDEX as D:
+instead.
+
+
+License
+=======
+
+DumbDrv is free software, and is distributed under the GNU General
+Public License.  Please see the file COPYING for details.
+
+
+Installation
+============
+
+DumbDrv is installed by entering the line
+
+            DEVICE=d:\path\DUMBDRV.SYS
+
+in your CONFIG.SYS file.  The driver will be loaded the next time you
+boot your computer.  DumbDrv will display a message saying what drive
+letters it occupies.
+
+You may also specify the number of drive letters you want to reserve.
+To reserve three drives, use the line
+
+            DEVICE=d:\path\DUMBDRV.SYS 3
+
+in your CONFIG.SYS.  If you do not specify a number, the default value
+is 1.  If you specify a number higher than the number of available
+drive letters, DumbDrv will use all available drives.
+
+NOTE: Drive letters are assigned to block device drivers sequentially
+in the order they are loaded in CONFIG.SYS.
+
+
+Contacting the author
+=====================
+
+You are welcome send me any ideas, comments and suggestions for
+DumbDrv.  If you have found any bugs, please let me know.  My email
+address is
+
+        Marcus.Better@abc.se

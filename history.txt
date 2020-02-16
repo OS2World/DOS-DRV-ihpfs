@@ -1,0 +1,99 @@
+iHPFS Revision History
+----------------------
+
+1.28	Fixed version check bug that prevented iHPFS to run under Novell DOS.
+
+1.27	Runs under OpenDOS 7.02.
+
+	Supports up to 32 drives letters (under some versions of OpenDOS).
+
+1.26	Fixed a problem that caused hangs with MSCDEX in DOS 7.
+
+1.25	Fixed file search problem in DOS.
+
+	Changes to partition scanning code.
+
+1.24	Works with Windows 95.
+
+	Several modifications to the partition scanning code. 
+
+	Now supports large IDE drives on more BIOSes through the /B option.
+
+1.23	The partition scanning code has been rewritten from scratch. Most
+	notably, this should fix problems with large IDE drives.
+
+	The /B option has been removed, at least for the time being.
+
+	Attempts to read a file starting beyond the end of the file will now
+	be handled the way applications expect.
+
+	The driver no longer leaves a small stub in memory after an uninstall,
+	except when another TSR loaded after iHPFS prevents this.
+
+	Fixed a bug that would cause a "Divide by zero" error when a partition
+	was first accessed under certain conditions.
+
+	Directory searches now imitate the behaviour of DOS more closely.
+
+	Fixed a bug which caused Novell DOS 7 to crash when the cache was
+	activated.
+
+1.22	Added support for Novell DOS 7.
+
+	New /B option forces use of extended BIOS functions.
+
+1.21	Added support for large IDE drives (>528 MB).
+
+	Added support for DR DOS 5 and 6.
+
+	Fixed a problem with unusually long paths. If a pathname is too long
+	for DOS to handle, the directory tree is cut off at the deepest 
+	possible level, and subdirectories at the last level are seen as
+	inaccessible files with length zero. 
+
+1.20	iHPFS can now handle several drives in one instance. The command
+	line syntax has changed to reflect this. See the documentation
+	for details.
+
+	Free space on the iHPFS partitions is now reported.
+
+	Access has been speeded up a bit.
+
+	The . and .. directories no longer exist in the root directory.
+
+	A bug with the /L option in version 1.15 would cause iHPFS to
+	report that a file/directory existed when only a partial file name
+	was given. This has been corrected.
+
+1.15	Fixed a problem with crashes when running iHPFS with MSD 2.11 and
+	some other programs.
+	
+	Should now work better with fragmented files.
+
+1.14	A new /L option gives access to files with long filenames.
+
+	iHPFS now returns the correct disk size.
+
+	Removed a limitation on the number of simultaneously open files -
+	this works better with Windows.
+
+	The . and .. directories are now explicitly returned in directory
+	searches, which is necessary for some programs.
+
+1.13	Speeded up the cache a lot.
+
+	The driver may now be uninstalled using the /U option.
+
+	Fixed a bug with directory searches. Now works with TREE.
+
+1.12	Added support for secondary partitions.
+
+1.11	Fixed bugs with directory searches.
+
+1.10	Cache added. The cache uses XMS memory.
+
+	Handles volume labels.
+
+	Won't run under OS/2 DOS.
+
+1.00	First release

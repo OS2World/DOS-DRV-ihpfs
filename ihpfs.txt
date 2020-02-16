@@ -1,0 +1,205 @@
+
+
+
+
+
+
+
+
+
+                             iHPFS
+                    An HPFS Driver for DOS
+             Copyright (C) 1993-1998 Marcus Better
+
+                         Version 1.28
+                        April 22, 1998
+
+
+
+
+
+
+
+
+
+Overview
+========
+
+iHPFS makes it possible for OS/2 users to use their HPFS partitions
+when they boot plain DOS.  The HPFS partition is assigned a drive
+letter, and can be accessed like any DOS drive.  iHPFS is restricted
+to read-only access.
+
+iHPFS is easy to install and convenient to use, as it acts like any
+DOS drive.  Data files and programs on the HPFS partition may be read
+and executed, or copied to other drives.
+
+
+License
+=======
+
+iHPFS is free software, and is distributed under the GNU General
+Public License.  Please see the file COPYING for details.
+
+
+System requirements
+===================
+
+In order to run iHPFS, you need a 386 processor or better.  iHPFS runs
+under MS-DOS and PC DOS 3.10 and later, DR DOS 5 and 6, Novell DOS 7
+and OpenDOS 7.
+
+
+How to use iHPFS
+================
+
+Run IHPFS.EXE from the DOS prompt.  The syntax is:
+
+    	IHPFS [options] [d:n d:n ...]
+    or	IHPFS /U [d:]
+
+The brackets indicate an optional parameter.
+
+d:      The drive letter that you want to assign to an iHPFS drive.
+        You may specify more than one drive letter on the same command
+        line.  If no drive letters are specified, iHPFS will scan your
+        hard drives and automatically install all HPFS partitions.
+
+n       The number of the HPFS partition that you want to access.
+        HPFS partitions are numbered (logically) so that you can
+        specify to iHPFS which partitions you want to access.  The
+        first HPFS partition on the first hard disk is partition
+        number 1.  Note that only HPFS partitions are counted - if
+        your system has two HPFS partitions, they will have numbers 1
+        and 2, regardless of any other non-HPFS partitions you might
+        have.
+
+iHPFS recognizes the following options:
+
+/B1     Use a certain BIOS extension to access large drives.  Please
+        read the section `Large IDE Drives' before using this option.
+
+/B2     Disable use of the IBM/MS Extensions, another BIOS extension
+        for large drives.  If you have problems running iHPFS, you can
+        try this option.  It is only needed if you have a strange
+        BIOS.
+
+/C=x    Set up a cache in XMS memory.  A cache can improve performance
+        tremendously.  x specifies the cache size, in KB, and is not
+        optional.  To use this option, you must have an XMS driver
+        like HIMEM.SYS loaded.
+
+/L      This option makes it possible to access files with long
+        filenames.  These files will be given a new filename and
+        extension.  The new name will consist of the first valid
+        characters (eight or less) before the first dot in the long
+        filename.  The extension is computed from the long filename,
+        and is made up of letters, digits and a few other characters.
+        Filenames that begin with a dot will be seen as HPFS.xxx,
+        where xxx is the computed extension.
+
+/M      Disables multitrack operations.  When this option is given,
+        iHPFS will not perform BIOS calls that read sectors from
+        several tracks at once.  This option may be necessary if your
+        BIOS cannot handle multitrack operations, and should only be
+        used if iHPFS does not work otherwise.
+
+/U      Uninstalls one or more iHPFS drives.  If no drive letter is
+        specified, this will uninstall all iHPFS drives, and remove
+        the driver from memory.  If a drive letter is specified, only
+        that drive will be removed.
+
+        If another TSR has been loaded after iHPFS, it may not be
+        possible to uninstall iHPFS comletely in a safe way.  In those
+        cases, a few bytes of iHPFS' code will remain resident,
+        although inactive.
+
+
+Examples
+--------
+
+To install iHPFS for all HPFS partitions, type
+
+    	IHPFS
+
+To install iHPFS for all HPFS partitions with long filename support
+and a 128KB cache, type
+
+    	IHPFS /L /C=128
+
+To install only HPFS partition 2 as G:, type
+
+    	IHPFS G:2
+
+To remove iHPFS drive G:, type
+
+    	IHPFS /U G:
+
+To uninstall iHPFS completely, type
+
+    	IHPFS /U
+
+
+Setting LASTDRIVE
+=================
+
+If you get the error message "Out of drive letters" from iHPFS, you
+need to make more drive letters available.  This can be done by
+placing the line
+
+    LASTDRIVE=Z
+
+in your CONFIG.SYS file.
+
+
+Large IDE drives
+================
+
+There is a problem with accessing IDE (ATA) drives larger than 528MB
+(528 million bytes).  The problem arises on some configurations when a
+partition occupies any cylinders numbered 1024 or higher.  iHPFS can
+access these partitions if the BIOS supports it.
+
+If iHPFS cannot access some of your HPFS partitions, you can try to
+run iHPFS with the /B1 option.  This tells iHPFS to use a certain BIOS
+extension which is available on many BIOSes.  If the /B option causes
+problems, then simply refrain from using it.  In particular, the /B
+option may not work with Windows95.
+
+If some of your partitions cannot be accessed because the BIOS support
+is missing, there are a few possible remedies.  The solution can be to
+obtain a newer BIOS from the manufacturer.  In some cases, a software
+driver for the EIDE card can be used.  It might also be tempting to
+experiment with various BIOS configuration settings.  However, this
+can cause the sectors on the disk to be shuffled like a deck of cards,
+resulting in loss of data.  Be sure to backup first.
+
+If you cannot access some partitions, you can download the program
+HPFSINFO from the iHPFS homepage.  It prints some useful information
+to a file, which you can send to me.
+
+
+The future of iHPFS
+===================
+
+I consider this a completed project, and do not plan to add any new
+features.  Moreover, I no longer use OS/2 and therefore cannot
+maintain the program.  If you have a problem with a simple solution
+(such as a new DOS version not working), then I might still be able to
+fix it.
+
+If you want to maintain this program, let me know.
+
+
+Contacting the author
+=====================
+
+You are welcome to send me any ideas, comments and suggestions for
+iHPFS.  If you have found any bugs, please let me know.  My email
+address is
+
+	Marcus.Better@abc.se
+
+The latest version of iHPFS is available at
+
+	http://www.student.nada.kth.se/~f96-bet/ihpfs/

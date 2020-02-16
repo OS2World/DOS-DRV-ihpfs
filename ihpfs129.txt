@@ -1,0 +1,41 @@
+
+  changes from 1.28 to 1.29 by Veit.Kannegieser@gmx.de:
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴�
+
+   * supports partition of >4 GB size
+   * better supports NW/DR DOS 7 (AccMode)
+   * supports partitions on ASPI media (like IOMEGA ZIP 100)
+   * supports HPFS floppy
+   * unmounts on changed media and removes from cache
+   * DiskFree no longer alters high parts of ebx and edx
+   * can coexist with Personal Netware
+   * parses extended partition type 0f
+   * files and volume label with spaces are now visible
+   * can report 0 bytes free
+   * can limit reported disk size to 2 GB
+
+
+  new options:
+  컴컴컴컴컴컴
+
+   /0 ....... report zero bytes free, speeds up load process, because
+              iHPFS does not have to scan all bitmap sectors
+
+   /2 ....... reported disk size will fit into 31 bit integers,
+              many programs have problems with bigger partitions
+
+   /A ....... scan ASPI media for HPFS partitions
+
+   /F ....... look for HPFS formated floppy
+
+
+
+   recommended line in autoexec.bat:
+   컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴�
+
+   LH C:\PATH\IHPFS.EXE /0 /2 /B1 /C=4000 /L
+
+
+
+   i will try to maintain iHPFS.
+   
